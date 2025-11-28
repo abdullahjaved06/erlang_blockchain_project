@@ -3,7 +3,7 @@
 
 %% start(NodePids, ValidTxs) -> spawn builder process
 start(NodePids, ValidTxs) ->
-    spawn(?MODULE, loop, [NodePids, ValidTxs, 1, <<"GENESIS">>]).
+    spawn(fun() -> loop(NodePids, ValidTxs, 1, <<"GENESIS">>) end).
 
 %% loop(NodePids, TxPool, BlockNum, PrevHash)
 loop(_NodePids, [], _BlockNum, _PrevHash) ->

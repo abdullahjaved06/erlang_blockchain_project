@@ -1,5 +1,5 @@
 -module(main).
--export([start/0]).
+-export([start/0, demo_part1/1]).
 
 -define(TX_FILE, "../transactions.csv").
 
@@ -52,3 +52,22 @@ make_txs([], _Id) ->
 make_txs([Line | Rest], Id) ->
     Tx = tx:parse_csv_line(Line, Id),
     [Tx | make_txs(Rest, Id+1)].
+
+%% Demo for Part I: run with N non-validator nodes and one builder
+demo_part1(NodeCount) ->
+    io:format("== Part I demo with ~p nodes ==~n", [NodeCount]),
+
+    %% 1) Load and validate transactions
+    {ok, Lines} = read_lines(?TX_FILE),
+    TxsWithId = make_txs(Lines, 1),
+    ValidTxs = [Tx || Tx <- TxsWithId, tx:is_valid(Tx)],
+    io:format("Valid transactions in pool: ~p~n", [length(ValidTxs)]),
+
+    %% 2) Spawn NonValidator nodes
+    NodeIds = lists:seq(1, NodeCount),
+    NodePids = [node:start_nonvalidator(Id) || Id <- NodeIds],
+    io:format("Spawned ~p non-validator nodes.~n", [NodeCount]),
+
+    %% 3) Start builder
+    builder:start(NodePids, ValidTxs),
+    ok.

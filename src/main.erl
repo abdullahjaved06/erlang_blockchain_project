@@ -39,12 +39,20 @@ read_lines(Filename) ->
     case file:read_file(Filename) of
         {ok, Bin} ->
             %% Split by newline
-            Lines = string:split(binary_to_list(Bin), "\n", all),
-            %% Remove empty lines at the end
-            {ok, [L || L <- Lines, L =/= ""]};
+            Lines0 = string:split(binary_to_list(Bin), "\n", all),
+            %% Remove completely empty lines
+            Clean = [L || L <- Lines0, L =/= ""],
+            %% Skip header if present
+            case Clean of
+                [] ->
+                    {ok, []};
+                [_Header | Rest] ->
+                    {ok, Rest}
+            end;
         Error ->
             Error
     end.
+
 
 %% Turn [Line1, Line2, ...] into [Tx1, Tx2, ...] with ids
 make_txs([], _Id) ->

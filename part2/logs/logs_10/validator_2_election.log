@@ -1,0 +1,5 @@
+Bootstrap. Validators=[1,2,3,4,5,6,7,8,9,10], proposer_group=[1], is_head=false
+Received list in shuffle_round: [4,3,2,1,7,10,8,5,9,6]
+Forwarding reshuffled list to validator 3: [8,3,4,2,5,6,10,7,9,1]
+Received new proposer group from 1: [5] (new head: 5)
+Start new epoch. Head is validator 5. Proposer group: [5]

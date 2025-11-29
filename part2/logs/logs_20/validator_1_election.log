@@ -1,0 +1,19 @@
+Election started (I am current head)
+Sending initial shuffled list to validator 2: [5,4,8,1,6,9,2,10,7,3]
+Received list in shuffle_round: [7,8,10,5,6,9,2,3,1,4]
+Head received final shuffled list: [4,6,9,8,7,10,5,3,1,2]
+Chose new proposer group: [4] (new head: 4). Election time: 5 ms
+Received new proposer group from 1: [4] (new head: 4)
+Start new epoch. Head is validator 4. Proposer group: [4]
+Bootstrap. Validators=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20], proposer_group=[1,
+                                                                                            2], is_head=true
+Election started (I am current head)
+Sending initial shuffled list to validator 2: [7,10,4,5,8,6,15,17,9,18,16,14,
+                                               11,3,13,12,1,20,19,2]
+Received list in shuffle_round: [10,11,19,13,5,3,12,18,20,15,6,8,4,7,1,14,17,
+                                 2,16,9]
+Head received final shuffled list: [18,10,1,17,9,2,14,4,6,7,8,20,15,11,3,16,
+                                    13,5,19,12]
+Chose new proposer group: [18,10] (new head: 18). Election time: 8 ms
+Received new proposer group from 1: [18,10] (new head: 18)
+Start new epoch. Head is validator 18. Proposer group: [18,10]
